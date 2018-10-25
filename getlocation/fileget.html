@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body onload="getLocation()">
+
+<p></p>
+
+
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    x.innerHTML = position.coords.latitude + 
+    " " + position.coords.longitude;
+    
+var hiddenElement = document.createElement('a');
+   hiddenElement.href = 'data:attachment/text,' + encodeURI(x.innerHTML);
+   hiddenElement.target = '_blank';
+   hiddenElement.download = 'test1.txt';
+   hiddenElement.click();  
+
+}
+
+</script>
+
+</body>
+</html>
